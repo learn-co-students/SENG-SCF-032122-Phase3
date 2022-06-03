@@ -12,7 +12,7 @@ def print_menu_options
   puts "Here are your options:
   1. List all dogs
   2. Add a dog"
-  puts "Please choose an option. At any time, type 'exit' to leave the program"
+  puts "Please choose an option. At any time, type 'menu' to see menu options or 'exit' to leave the program"
 end
 
 
@@ -75,16 +75,24 @@ end
 def add_dog all_dogs
   print "please enter your dog's name "
   name = ask_for_choice
-
+  if name == "menu"
+    return
+  end
   print "please enter your dog's age "
   age = ask_for_choice
-
+  if age == "menu"
+    return
+  end
   print "please enter your dog's breed "
   breed = ask_for_choice
-
+  if breed == "menu"
+    return
+  end
   print "please enter your dog's image url "
   image_url = ask_for_choice
-  
+  if image_url == "menu"
+    return
+  end
   new_dog = {name: name, age: age, breed: breed, image_url: image_url}
   all_dogs.push new_dog
   # all_dogs << {:name => name, :age => age, :breed => breed, :image_url => image_url}
@@ -104,6 +112,8 @@ def handle_choice(choice)
     add_dog($dogs)
   elsif choice == "debug"
     binding.pry
+  elsif choice == "menu"
+    print_menu_options
   else 
     puts "oops you let the dogs out, grrrr."
   end
