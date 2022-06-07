@@ -29,8 +29,9 @@ class Dog
   # ✅ we want to be able to feed a dog and track when they were last fed
   def feed
     @last_fed_at = Time.now
+    # binding.pry
   end
-
+# binding.pry
 
   def needs_a_walk?
     # ✅ invoking our last_walked_at method. if last_walked_at return value == nil then this line of code won't run and the method will return true. otherwise the between method will check to see if last_walked_at return value (which is an instance of the Time class https://ruby-doc.org/core-2.6.3/Time.html) is between now and 4 hours ago.

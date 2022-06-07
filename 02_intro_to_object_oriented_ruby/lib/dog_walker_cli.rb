@@ -30,20 +30,22 @@ end
 
 # ✅ remove the print_dog method. We'll be using the Dog#print method instead
 
-def print_dog(dog_hash)
-  puts
-  puts dog_hash[:name].green
-  puts "  Age: #{dog_hash[:age]}"
-  puts "  Breed: #{dog_hash[:breed]}"
-  puts "  Image Url: #{dog_hash[:image_url]}"
-  puts
-end
+# def print_dog(dog_hash)
+#   puts
+#   puts dog_hash[:name].green
+#   puts "  Age: #{dog_hash[:age]}"
+#   puts "  Breed: #{dog_hash[:breed]}"
+#   puts "  Image Url: #{dog_hash[:image_url]}"
+#   puts
+# end
 
 
+# ✅ Refactor
 # define a method `list_dogs` that will iterate over an array of
-# dog hashes and call print_dog on each one.
+# dog instances and call print on each one.
 def list_dogs(dogs)
   dogs.each do |dog_hash|
+    # after we've refactored this will now be an instance of a dog
     print_dog(dog_hash)
   end
 end
