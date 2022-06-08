@@ -42,7 +42,13 @@ class Dog
     end
   end
 
-
+def hungry?
+  if last_fed_at
+    !last_fed_at.between?(6.hours.ago, Time.now)
+  else
+    true
+  end
+end
 
 
 
