@@ -62,7 +62,7 @@ end
   # Return true if the dog hasn't been walked (that we know of) or their last walk was longer than a set amount of time in the past, otherwise return false.
   def needs_a_walk?
     if last_walked_at
-      !last_walked_at.between?(10.seconds.ago, Time.now)
+      !last_walked_at.between?(4.hours.ago, Time.now)
     else
       true
     end
@@ -72,7 +72,7 @@ end
   # Return true if the dog hasn't been fed (that we know of) or their last feeding was longer than a set amount of time in the past, otherwise return false
   def hungry?
     if last_fed_at
-      !last_fed_at.between?(15.seconds.ago, Time.now)
+      !last_fed_at.between?(6.hours.ago, Time.now)
     else
       true
     end
@@ -84,7 +84,7 @@ end
   # Call the formatted_name method within print to add the coloring
   def print
     puts
-    puts self.name.green
+    puts self.formatted_name
     puts "  Age: #{self.age}"
     puts "  Breed: #{self.breed}"
     puts "  Image Url: #{self.image_url}"
@@ -101,7 +101,16 @@ end
   # The method should return the name in green if the dog has been fed and walked recently
   # The method should return their name in red along with a message in parentheses if they: need a walk, are hungry, or both
   def formatted_name
-    
+    if self.hungry? && self.needs_a_walk?
+      "#{self.name} (hungry and needs a walk, pls!!)".red
+    elsif self.hungry?
+      "#{self.name} (hungry!!)".yellow
+    elsif self.needs_a_walk?
+      "#{self.name} (needs a walk!!)".yellow
+    else
+      self.name.green   
+    end
   end
-  
+
+
 end
