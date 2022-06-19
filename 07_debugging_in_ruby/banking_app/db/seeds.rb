@@ -1,11 +1,12 @@
 # This will delete any existing rows from the User and Bank tables
 # so you can run the seed file multiple times without having duplicate entries in your database
 puts "Deleting User/Bank data..."
-User.destroy_all
-Bank.destroy_all
+# User.destroy_all
+# Bank.destroy_all
+# Account.destroy_all
 
 puts "Creating users..."
-joe_shmoe = User.create(name: "Joe Schmoe", country_of_residence: "UK")
+joe_schmo = User.create(name: "Joe Schmo", country_of_residence: "UK")
 jane_doe = User.create(name: "Jane Doe", country_of_residence: "USA")
 
 puts "Creating banks..."
@@ -23,6 +24,19 @@ wells_fargo = Bank.create(name: "Wells Fargo", market_capitalization: 1946000000
 
 
 puts "Creating Accounts..."
+
+binding.pry
+
+t.float "balance"
+    t.string "label"
+    t.string "account_type"
+    t.integer "user_id"
+    t.integer "bank_id"
+
+  jane_acct = Account.create(balance: 1050.5, account_type: "IRA", label: "Investment", user_id: jane_doe.id, bank_id:bank_of_america.id)
+
+  joe_schmo_acct = Account.create(balance: 7.5, account_type: "Checking", label: "Personal", user: joe_schmo, bank: bank_of_america)
+
 # ***********************************************************
 # * TODO: create accounts! Remember, an account belongs to a user *
 # * and an account belongs to a bank.                         *
