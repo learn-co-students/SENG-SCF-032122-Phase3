@@ -1,7 +1,7 @@
 class DogsController < ApplicationController
   
   get "/dogs" do 
-    serialize(Dog.all)
+    serialize(Dog.includes(:walks))
   end
 
   get "/dogs/:id" do 
@@ -37,7 +37,12 @@ class DogsController < ApplicationController
 
   def serialize(dog)
     dog.to_json(
-      methods: :age
+      methods: :age,
+      include: {
+        dog_walks: {
+          methods: :formatted_time
+        }
+      }
     )
   end
 end

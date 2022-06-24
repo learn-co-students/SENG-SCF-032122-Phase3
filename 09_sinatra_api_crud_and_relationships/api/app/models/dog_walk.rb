@@ -6,5 +6,12 @@ class DogWalk < ActiveRecord::Base
 
   delegate :formatted_time, to: :walk
 
- 
+  def walk_time=(time)
+    if self.walk
+      self.walk.update(time: time)
+    else
+      self.walk = Walk.create(time: time)
+    end
+  end
+  
 end

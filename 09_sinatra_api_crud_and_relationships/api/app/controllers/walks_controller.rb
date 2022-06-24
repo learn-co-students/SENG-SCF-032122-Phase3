@@ -5,11 +5,17 @@ class WalksController < ApplicationController
   end
  
   post "/walks" do 
-    
+    serialize(Walk.create(walk_params))
   end
 
   delete "/walks/:id" do 
-    
+    walk = Walk.find(params[:id])
+    response = walk.to_json(
+      only: :time,
+      method: :dog_ids
+    )
+    walk.destroy
+    response
   end
 
   private 
@@ -24,7 +30,12 @@ class WalksController < ApplicationController
 
   def serialize(objects)
     objects.to_json(
-      methods: :formatted_time
+      methods: :formatted_time,
+      include: {
+        dogs: {
+          only: [:name, :id, :image_url]
+        }
+      }
     )
   end
 end
